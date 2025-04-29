@@ -124,16 +124,23 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden hero-pattern">
+    <section className="relative min-h-screen overflow-hidden hero-pattern">
+      {/* Canvas background */}
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 z-0 bg-transparent"
         style={{ pointerEvents: 'none' }}
       />
       
+      {/* Hero gradient arc - premium touch */}
+      <div className="absolute top-[15%] left-[5%] w-[90%] h-[70%] rounded-full blur-[100px] bg-gradient-to-r from-saas-yellow/5 via-saas-yellow/10 to-saas-yellow/5 z-0"></div>
+      
+      {/* Main content container */}
       <div className="container mx-auto px-4 md:px-6 z-10 pt-20">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 space-y-8 fade-in">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[80vh]">
+          
+          {/* Left Content - now spans 7/12 columns on medium screens and up */}
+          <div className="md:col-span-7 space-y-10 fade-in">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               From Idea to Impact — <span className="gradient-text">Build Your Future</span>, Today
             </h1>
@@ -142,16 +149,20 @@ const HeroSection = () => {
               You've got the vision. We've got the AI tools to launch your modern site in hours, not months.
             </p>
             
-            <div className="flex items-center space-x-2 bg-muted/50 backdrop-blur-sm rounded-lg px-4 py-2 animate-pulse-subtle">
-              <span className="text-saas-yellow">⚡</span>
-              <p className="text-sm font-medium transition-all duration-500 ease-in-out">
-                {painPoints[currentPainPoint]}
-              </p>
+            {/* Increased padding above pain point bar */}
+            <div className="pt-4">
+              <div className="flex items-center space-x-2 bg-muted/50 backdrop-blur-sm rounded-lg px-4 py-3 animate-pulse-subtle">
+                <span className="text-saas-yellow">⚡</span>
+                <p className="text-sm md:text-base font-medium transition-all duration-500 ease-in-out pain-point-animate">
+                  {painPoints[currentPainPoint]}
+                </p>
+              </div>
             </div>
             
-            <div className="flex flex-wrap gap-4 items-center">
+            {/* More spacing around CTAs */}
+            <div className="flex flex-wrap gap-6 items-center pt-2 pb-4">
               <Button 
-                className="bg-saas-yellow text-saas-black text-lg py-6 px-8 hover:bg-saas-yellow/90 flex items-center" 
+                className="bg-saas-yellow text-saas-black text-lg py-6 px-8 hover:bg-saas-yellow/90 flex items-center shadow-lg hover:shadow-xl transition-all" 
                 onClick={() => window.location.href = '#contact'}
               >
                 Book a Free Strategy Call <ArrowRight className="ml-2" />
@@ -159,65 +170,72 @@ const HeroSection = () => {
               
               <Button 
                 variant="outline" 
-                className="text-lg py-6 px-8 border-saas-yellow text-foreground hover:bg-saas-yellow/10"
+                className="text-lg py-6 px-8 border-saas-yellow text-foreground hover:bg-saas-yellow/10 transition-all"
                 onClick={() => window.location.href = '#solutions'}
               >
                 See Example Sites
               </Button>
-              
-              <div className="flex items-center mt-2 sm:mt-0 text-sm">
-                <span className="text-saas-yellow mr-2">⭐</span>
-                <span className="text-muted-foreground">Trusted by 500+ founders</span>
-              </div>
+            </div>
+            
+            {/* Trust indicator with better spacing */}
+            <div className="flex items-center mt-4 text-base">
+              <span className="text-saas-yellow mr-2">⭐</span>
+              <span className="text-muted-foreground">Trusted by 500+ founders</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-              <div className="flex items-center text-sm">
-                <Clock className="h-4 w-4 text-saas-yellow mr-2" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4">
+              <div className="flex items-center text-sm md:text-base">
+                <Clock className="h-5 w-5 text-saas-yellow mr-2" />
                 <span>Launch in days</span>
               </div>
-              <div className="flex items-center text-sm">
-                <Star className="h-4 w-4 text-saas-yellow mr-2" />
+              <div className="flex items-center text-sm md:text-base">
+                <Star className="h-5 w-5 text-saas-yellow mr-2" />
                 <span>Premium design</span>
               </div>
-              <div className="flex items-center text-sm">
-                <Zap className="h-4 w-4 text-saas-yellow mr-2" />
+              <div className="flex items-center text-sm md:text-base">
+                <Zap className="h-5 w-5 text-saas-yellow mr-2" />
                 <span>AI-powered</span>
               </div>
             </div>
           </div>
           
-          <div className="md:w-1/2 mt-10 md:mt-0">
+          {/* Right Visual Content - now spans 5/12 columns on medium screens and up */}
+          <div className="md:col-span-5 mt-8 md:mt-0">
             <div className="relative animate-float">
-              {/* Before/After Comparison */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-background/80 backdrop-blur-sm rounded-lg p-3 border border-muted">
-                  <div className="h-4 w-16 bg-muted/70 rounded mb-2"></div>
+              {/* Enhanced Before/After Comparison */}
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-muted transition-all hover:shadow-md">
+                  <div className="h-4 w-16 bg-muted/70 rounded mb-3"></div>
                   <div className="flex items-center">
-                    <div className="h-10 w-10 bg-muted/70 rounded"></div>
-                    <div className="ml-2">
-                      <div className="h-3 w-20 bg-muted/70 rounded"></div>
-                      <div className="h-2 w-16 bg-muted/70 rounded mt-1"></div>
+                    <div className="h-12 w-12 bg-muted/70 rounded"></div>
+                    <div className="ml-3">
+                      <div className="h-3 w-24 bg-muted/70 rounded"></div>
+                      <div className="h-2 w-20 bg-muted/70 rounded mt-2"></div>
                     </div>
                   </div>
-                  <div className="text-xs text-muted-foreground mt-2 text-center">Before</div>
+                  <div className="text-xs font-medium text-muted-foreground mt-3 text-center">
+                    🚫 Before — Confused, scattered ideas
+                  </div>
                 </div>
                 
-                <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-lg p-3 border border-saas-yellow/20">
-                  <div className="h-4 w-16 bg-saas-yellow/30 rounded mb-2"></div>
+                <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-lg p-4 border border-saas-yellow/20 transition-all hover:shadow-lg">
+                  <div className="h-4 w-16 bg-saas-yellow/30 rounded mb-3"></div>
                   <div className="flex items-center">
-                    <div className="h-10 w-10 bg-saas-yellow/30 rounded"></div>
-                    <div className="ml-2">
-                      <div className="h-3 w-20 bg-saas-yellow/30 rounded"></div>
-                      <div className="h-2 w-16 bg-saas-yellow/30 rounded mt-1"></div>
+                    <div className="h-12 w-12 bg-saas-yellow/30 rounded"></div>
+                    <div className="ml-3">
+                      <div className="h-3 w-24 bg-saas-yellow/30 rounded"></div>
+                      <div className="h-2 w-20 bg-saas-yellow/30 rounded mt-2"></div>
                     </div>
                   </div>
-                  <div className="text-xs text-saas-yellow mt-2 text-center">After</div>
+                  <div className="text-xs font-medium text-saas-yellow mt-3 text-center">
+                    ✅ After — A stunning site powered by AI
+                  </div>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-2xl p-6 border border-saas-yellow/20 shadow-[0_0_40px_rgba(255,215,0,0.15)] transform transition-all duration-500 hover:scale-105">
-                <Card className="w-full bg-black/40 rounded-lg backdrop-blur-md p-4 border-saas-yellow/20">
+              {/* Enhanced Card with premium touches and caption */}
+              <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-2xl p-6 border border-saas-yellow/20 shadow-[0_0_40px_rgba(255,215,0,0.15)] transform transition-all duration-500 hover:scale-[1.02]">
+                <Card className="w-full bg-black/40 rounded-lg backdrop-blur-md p-5 border-saas-yellow/20">
                   <div className="flex items-center justify-center">
                     <div className="w-16 h-16 bg-saas-yellow/30 rounded-full mb-4 flex items-center justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -227,22 +245,27 @@ const HeroSection = () => {
                   </div>
                   <p className="text-center text-lg font-medium">Build Your Website</p>
                   
-                  <div className="flex justify-between mt-6">
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10">
+                  {/* Caption for the card - premium touch */}
+                  <p className="text-center text-xs text-muted-foreground mt-2 mb-4">
+                    AI-Powered Site Builder — Fully Customizable, No Code
+                  </p>
+                  
+                  <div className="flex justify-between mt-4">
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                       <span className="absolute mt-20 text-xs text-muted-foreground">Speed</span>
                     </div>
                     
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10">
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
                       <span className="absolute mt-20 text-xs text-muted-foreground">Growth</span>
                     </div>
                     
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10">
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                       </svg>
@@ -251,8 +274,31 @@ const HeroSection = () => {
                   </div>
                 </Card>
                 
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-saas-yellow/10 rounded-full blur-3xl"></div>
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-saas-yellow/10 rounded-full blur-3xl"></div>
+                {/* Enhance glow effects */}
+                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-saas-yellow/10 rounded-full blur-3xl"></div>
+                <div className="absolute -top-12 -left-12 w-48 h-48 bg-saas-yellow/10 rounded-full blur-3xl"></div>
+              </div>
+              
+              {/* Add animated line connecting vision to execution - premium touch */}
+              <div className="absolute top-1/2 left-0 transform -translate-x-full -translate-y-1/2 hidden md:block">
+                <svg width="100" height="2" className="overflow-visible">
+                  <line 
+                    x1="0" 
+                    y1="1" 
+                    x2="100" 
+                    y2="1" 
+                    stroke="url(#lineGradient)" 
+                    strokeWidth="2" 
+                    strokeDasharray="5,5" 
+                    className="animate-pulse"
+                  />
+                  <defs>
+                    <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="rgba(255,215,0,0)" />
+                      <stop offset="100%" stopColor="rgba(255,215,0,0.6)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
             </div>
           </div>
