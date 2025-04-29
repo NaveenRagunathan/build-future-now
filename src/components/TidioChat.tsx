@@ -11,7 +11,9 @@ const TidioChat = () => {
 
     return () => {
       // Clean up - remove the script when component unmounts
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 

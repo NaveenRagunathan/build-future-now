@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const ProcessSection = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
   const steps = [
     {
       id: 1,
@@ -76,42 +80,183 @@ const ProcessSection = () => {
     },
   ];
 
+  // Handle scroll-based step activation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      // Calculate which step should be active based on scroll position
+      if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+        const scrollPercentage = (scrollPosition - sectionTop) / sectionHeight;
+        const stepIndex = Math.min(
+          steps.length - 1,
+          Math.floor(scrollPercentage * steps.length)
+        );
+        setActiveStep(stepIndex);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initialize on mount
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [steps.length]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
-    <section id="process" className="py-20 clip-path-slant bg-gradient-to-b from-saas-black via-saas-black to-black">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Streamlined Process</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            We've refined our approach to deliver exceptional results with minimal friction for your business.
-          </p>
+    <section 
+      id="process" 
+      ref={sectionRef}
+      className="py-32 relative bg-gradient-to-b from-black via-black to-gray-900 overflow-hidden"
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute rounded-full bg-saas-yellow"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.random() * 50 + 10}px`,
+                height: `${Math.random() * 50 + 10}px`,
+                opacity: Math.random() * 0.5,
+                animationDuration: `${Math.random() * 50 + 10}s`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block py-1 px-3 bg-saas-yellow/10 rounded-full text-saas-yellow text-sm font-medium mb-4">
+              OUR METHODOLOGY
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+              Our Premium Development Process
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              We've refined our approach to deliver exceptional results with a seamless experience for your business.
+            </p>
+          </motion.div>
         </div>
 
+        {/* Process timeline */}
         <div className="relative">
-          {/* Connection line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-saas-yellow/10 via-saas-yellow to-saas-yellow/10 transform -translate-x-1/2"></div>
+          {/* Vertical connection line with animated progress */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-800 transform -translate-x-1/2">
+            <motion.div 
+              className="absolute top-0 left-0 right-0 bg-saas-yellow rounded-full"
+              style={{ height: `${(activeStep + 1) * 100 / steps.length}%` }}
+              initial={{ height: 0 }}
+              animate={{ height: `${(activeStep + 1) * 100 / steps.length}%` }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            />
+          </div>
 
-          <div className="space-y-16">
+          {/* Steps */}
+          <motion.div 
+            className="space-y-24 md:space-y-32"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+          >
             {steps.map((step, index) => (
-              <div key={step.id} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-6 lg:gap-12`}>
+              <motion.div 
+                key={step.id}
+                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
+                variants={itemVariants}
+              >
+                {/* Step card */}
                 <div className="lg:w-1/2 flex justify-center">
-                  <Card className="w-full md:max-w-md bg-black/50 backdrop-blur-sm border border-saas-yellow/20 overflow-hidden group hover:border-saas-yellow/50 transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="text-saas-yellow mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                        {step.icon}
-                      </div>
-                      <h3 className="text-2xl font-semibold mb-3 text-center">{step.title}</h3>
-                      <p className="text-gray-400 text-center">{step.description}</p>
-                    </CardContent>
-                  </Card>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="w-full"
+                  >
+                    <Card 
+                      className={`w-full md:max-w-md backdrop-blur-md border overflow-hidden transition-all duration-500 
+                        ${activeStep === index 
+                          ? 'bg-gradient-to-br from-black/80 to-gray-900/80 border-saas-yellow shadow-[0_0_30px_rgba(255,215,0,0.15)]' 
+                          : 'bg-black/40 border-saas-yellow/20'}`}
+                    >
+                      <CardContent className="p-8">
+                        <motion.div 
+                          className="text-saas-yellow mb-6 flex justify-center"
+                          animate={activeStep === index ? {
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, 0, -5, 0],
+                            transition: { duration: 0.5 }
+                          } : {}}
+                        >
+                          {step.icon}
+                        </motion.div>
+                        <h3 className="text-2xl font-semibold mb-4 text-center">
+                          <span className="inline-block bg-saas-yellow/20 text-saas-yellow rounded-full w-8 h-8 text-center leading-8 mr-2">
+                            {step.id}
+                          </span> {step.title}
+                        </h3>
+                        <p className="text-gray-400 text-center">{step.description}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </div>
 
-                <div className="hidden lg:flex w-12 h-12 rounded-full bg-saas-yellow text-black items-center justify-center font-bold z-10 border-4 border-black">
+                {/* Center circle */}
+                <div className="hidden lg:flex w-16 h-16 rounded-full bg-gradient-to-r from-saas-yellow to-amber-500 text-black items-center justify-center font-bold z-10 border-4 border-black shadow-[0_0_20px_rgba(255,215,0,0.4)]">
                   {step.id}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="mt-24 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-xl text-gray-300 mb-6">Ready to start your journey with us?</p>
+          <button className="bg-saas-yellow hover:bg-saas-yellow/90 text-black font-bold py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105">
+            Book a Discovery Call
+          </button>
+        </motion.div>
       </div>
     </section>
   );
