@@ -13,7 +13,7 @@ import TidioChat from '@/components/TidioChat';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <HeroSection />
       <ProblemSection />

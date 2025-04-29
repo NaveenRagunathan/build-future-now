@@ -67,24 +67,24 @@ const ProblemSection = () => {
   ];
 
   return (
-    <section id="problems" className="py-20 bg-black">
+    <section id="problems" className="py-20 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Startups Struggle with Web Development</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Most founders face these common challenges when trying to build their online presence.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {problems.map((problem) => (
-            <Card key={problem.id} className="bg-saas-black border border-gray-800 hover:border-saas-yellow/50 transition-all duration-300 overflow-hidden group">
+            <Card key={problem.id} className="border hover:border-saas-yellow/50 transition-all duration-300 overflow-hidden group">
               <CardContent className="p-6">
                 <div className="text-saas-yellow mb-4 group-hover:scale-110 transition-transform duration-300">
                   {problem.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">{problem.title}</h3>
-                <p className="text-gray-400">{problem.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{problem.title}</h3>
+                <p className="text-muted-foreground">{problem.description}</p>
               </CardContent>
             </Card>
           ))}
