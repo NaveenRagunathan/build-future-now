@@ -134,6 +134,16 @@
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
+/* Pain point carousel animation */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; transform: translateY(10px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+}
+
+.pain-point-animate {
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
