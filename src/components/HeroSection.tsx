@@ -173,7 +173,7 @@ const HeroSection = () => {
                 className="text-lg py-6 px-8 border-saas-yellow text-foreground hover:bg-saas-yellow/10 transition-all"
                 onClick={() => window.location.href = '#solutions'}
               >
-                See Example Sites
+                See What We’ve Built
               </Button>
             </div>
             
