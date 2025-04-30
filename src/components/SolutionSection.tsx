@@ -1,10 +1,16 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Check, Package, Award, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ParticlesBackground from "@/components/ParticlesBackground";
 
 const SolutionSection = () => {
   const packages = [
@@ -63,8 +69,10 @@ const SolutionSection = () => {
   ];
 
   return (
-    <section id="solutions" className="py-20 bg-black">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="solutions" className="relative py-20 bg-black overflow-hidden">
+      <ParticlesBackground />
+
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-wide">
             Solutions That Deliver Results
@@ -76,15 +84,12 @@ const SolutionSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {packages.map((pkg) => (
-            <div
-              key={pkg.id}
-              className="group relative perspective-1000"
-            >
-              <Card 
+            <div key={pkg.id} className="group relative perspective-1000">
+              <Card
                 className={cn(
                   "h-full relative transition-all duration-300 transform-gpu group-hover:translate-y-[-8px] bg-black rounded-xl overflow-hidden",
-                  pkg.isPopular 
-                    ? "border-2 border-saas-yellow shadow-[0_0_20px_rgba(255,215,0,0.3)]" 
+                  pkg.isPopular
+                    ? "border-2 border-saas-yellow shadow-[0_0_20px_rgba(255,215,0,0.3)]"
                     : "border-2 border-zinc-800"
                 )}
               >
@@ -96,15 +101,19 @@ const SolutionSection = () => {
                   </div>
                 )}
 
-                <CardHeader className={cn(
-                  "relative z-10 px-6 pt-8 pb-4",
-                  pkg.isPopular ? "bg-gradient-to-br from-zinc-900 to-black" : ""
-                )}>
+                <CardHeader
+                  className={cn(
+                    "relative z-10 px-6 pt-8 pb-4",
+                    pkg.isPopular ? "bg-gradient-to-br from-zinc-900 to-black" : ""
+                  )}
+                >
                   <div className="flex items-start justify-between mb-2">
-                    <pkg.icon className={cn(
-                      "h-8 w-8 mb-2",
-                      pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
-                    )} />
+                    <pkg.icon
+                      className={cn(
+                        "h-8 w-8 mb-2",
+                        pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
+                      )}
+                    />
                   </div>
                   <CardTitle className="text-2xl font-bold text-white mb-1">{pkg.name}</CardTitle>
                   <CardDescription className="text-gray-400 text-sm">{pkg.description}</CardDescription>
@@ -117,10 +126,12 @@ const SolutionSection = () => {
                   <ul className="space-y-3">
                     {pkg.features.map((feature, index) => (
                       <li key={index} className="flex items-start text-gray-300 text-sm">
-                        <Check className={cn(
-                          "h-4 w-4 mr-3 mt-0.5 flex-shrink-0",
-                          pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
-                        )} />
+                        <Check
+                          className={cn(
+                            "h-4 w-4 mr-3 mt-0.5 flex-shrink-0",
+                            pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
+                          )}
+                        />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -135,19 +146,21 @@ const SolutionSection = () => {
                         ? "bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 shadow-lg"
                         : "bg-zinc-900 text-white border border-zinc-700 hover:bg-zinc-800"
                     )}
-                    onClick={() => window.location.href = '#contact'}
+                    onClick={() => (window.location.href = "#contact")}
                   >
                     Get Started
                   </Button>
                 </CardFooter>
 
                 {/* Glow effect on hover */}
-                <div className={cn(
-                  "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
-                  pkg.isPopular 
-                    ? "bg-gradient-radial from-saas-yellow/10 via-transparent to-transparent"
-                    : "bg-gradient-radial from-zinc-700/10 via-transparent to-transparent"
-                )}></div>
+                <div
+                  className={cn(
+                    "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+                    pkg.isPopular
+                      ? "bg-gradient-radial from-saas-yellow/10 via-transparent to-transparent"
+                      : "bg-gradient-radial from-zinc-700/10 via-transparent to-transparent"
+                  )}
+                ></div>
               </Card>
             </div>
           ))}
@@ -159,7 +172,7 @@ const SolutionSection = () => {
           </p>
           <Button
             className="bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 py-6 px-8 text-lg font-semibold rounded-xl shadow-md"
-            onClick={() => window.location.href = '#contact'}
+            onClick={() => (window.location.href = "#contact")}
           >
             Book Your Free Consultation
           </Button>
