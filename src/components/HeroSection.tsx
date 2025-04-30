@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Clock, Star, Zap } from "lucide-react";
@@ -132,14 +133,19 @@ const HeroSection = () => {
       />
 
       {/* Hero gradient arc - premium touch */}
-      <div className="absolute top-[15%] left-[5%] w-[90%] h-[70%] rounded-full blur-[100px] bg-gradient-to-r from-saas-yellow/5 via-saas-yellow/10 to-saas-yellow/5 z-0"></div>
+      <div className="absolute top-[15%] left-[5%] w-[90%] h-[70%] rounded-full blur-[120px] bg-gradient-to-r from-saas-yellow/10 via-saas-yellow/15 to-saas-yellow/10 z-0"></div>
 
       {/* Main content container */}
       <div className="container mx-auto px-4 md:px-6 z-10 pt-32">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
           {/* Left Content - text area */}
-          <div className="md:col-span-7 space-y-12 fade-in">
+          <div className="md:col-span-7 space-y-14 fade-in">
             <div className="space-y-6">
+              {/* Added lightning icon above heading */}
+              <div className="flex items-center mb-1">
+                <Zap className="text-saas-yellow h-6 w-6 mr-2" />
+              </div>
+              
               <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
                 From Idea to Impact <span className="text-saas-yellow">—</span><br />
                 <span className="gradient-text">Build Your Future,</span> Today
@@ -150,10 +156,10 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* Pain point bar */}
+            {/* Pain point bar with lightning icon */}
             <div className="py-2">
-              <div className="flex items-center space-x-2 bg-muted/50 backdrop-blur-sm rounded-lg px-5 py-3 animate-pulse-subtle max-w-md">
-                <span className="text-saas-yellow">⚡</span>
+              <div className="flex items-center space-x-3 bg-muted/50 backdrop-blur-sm rounded-lg px-5 py-3 animate-pulse-subtle max-w-md border border-saas-yellow/10 hover:border-saas-yellow/30 transition-all">
+                <Zap className="h-5 w-5 text-saas-yellow" />
                 <p className="text-base md:text-lg font-medium transition-all duration-500 ease-in-out pain-point-animate">
                   {painPoints[currentPainPoint]}
                 </p>
@@ -161,12 +167,12 @@ const HeroSection = () => {
             </div>
 
             {/* CTAs with proper spacing */}
-            <div className="flex flex-wrap gap-6 items-center pt-4 pb-6">
+            <div className="flex flex-wrap gap-8 items-center pt-6 pb-8">
               <Button
                 className="bg-saas-yellow text-saas-black text-lg py-6 px-8 hover:bg-saas-yellow/90 flex items-center shadow-lg hover:shadow-xl transition-all"
                 onClick={() => window.location.href = '#contact'}
               >
-                Book a Free Strategy Call <ArrowRight className="ml-2" />
+                Book a Free Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
               <Button
@@ -174,64 +180,65 @@ const HeroSection = () => {
                 className="text-lg py-6 px-8 border-saas-yellow text-foreground hover:bg-saas-yellow/10 transition-all"
                 onClick={() => window.location.href = '#solutions'}
               >
-                See Example Sites
+                See What We've Built
               </Button>
             </div>
 
-            {/* Trust indicator */}
-            <div className="pt-4">
+            {/* Updated trust indicator */}
+            <div className="pt-6">
               <div className="flex items-center text-base">
-                <span className="text-saas-yellow mr-2">⭐</span>
-                <span className="text-muted-foreground">Trusted by 500+ founders</span>
+                <Star className="text-saas-yellow h-5 w-5 mr-2" />
+                <span className="text-muted-foreground">Building success with a few exceptional founders</span>
               </div>
 
-              <div className="grid grid-cols-3 gap-12 pt-8">
+              {/* More even spacing for bottom section */}
+              <div className="grid grid-cols-3 gap-16 pt-10">
                 <div className="flex items-center text-sm md:text-base">
-                  <Clock className="h-5 w-5 text-saas-yellow mr-2" />
+                  <Clock className="h-5 w-5 text-saas-yellow mr-3" />
                   <span>Launch in days</span>
                 </div>
                 <div className="flex items-center text-sm md:text-base">
-                  <Star className="h-5 w-5 text-saas-yellow mr-2" />
+                  <Star className="h-5 w-5 text-saas-yellow mr-3" />
                   <span>Premium design</span>
                 </div>
                 <div className="flex items-center text-sm md:text-base">
-                  <Zap className="h-5 w-5 text-saas-yellow mr-2" />
+                  <Zap className="h-5 w-5 text-saas-yellow mr-3" />
                   <span>AI-powered</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Content */}
-          <div className="md:col-span-5 mt-8 md:mt-0">
+          {/* Right Visual Content - enhanced with better contrast and hover effects */}
+          <div className="md:col-span-5">
             <div className="relative animate-float">
-              {/* Before/After Comparison - matching the reference image */}
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-muted transition-all hover:shadow-md transform-gpu">
+              {/* Enhanced Before/After Comparison with hover effects */}
+              <div className="grid grid-cols-2 gap-6 mb-10">
+                <div className="bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-muted transition-all hover:shadow-md hover:border-muted/80 transform-gpu group">
                   <div className="h-28 bg-muted/50 rounded mb-3 flex items-center justify-center">
                     <div className="h-10 w-16 bg-muted/70 rounded-sm"></div>
                   </div>
                   <div className="h-4 w-32 bg-muted/70 rounded mb-2 mx-auto"></div>
                   <div className="h-3 w-24 bg-muted/70 rounded mx-auto"></div>
-                  <div className="text-xs font-medium text-muted-foreground mt-3 text-center">
+                  <div className="text-xs font-medium text-muted-foreground mt-3 text-center group-hover:text-foreground">
                     🚫 Before — Confused, scattered ideas
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-lg p-4 border border-saas-yellow/20 transition-all hover:shadow-lg transform-gpu">
+                <div className="bg-gradient-to-tr from-saas-yellow/15 to-saas-yellow/5 backdrop-blur-sm rounded-lg p-4 border border-saas-yellow/30 transition-all hover:shadow-lg hover:border-saas-yellow/50 transform-gpu group">
                   <div className="h-28 bg-saas-yellow/10 rounded mb-3 flex items-center justify-center">
                     <div className="h-10 w-16 bg-saas-yellow/30 rounded-sm"></div>
                   </div>
                   <div className="h-4 w-32 bg-saas-yellow/30 rounded mb-2 mx-auto"></div>
                   <div className="h-3 w-24 bg-saas-yellow/30 rounded mx-auto"></div>
-                  <div className="text-xs font-medium text-saas-yellow mt-3 text-center">
+                  <div className="text-xs font-medium text-saas-yellow mt-3 text-center group-hover:text-saas-yellow/100 transition-all">
                     ✅ After — A stunning site powered by AI
                   </div>
                 </div>
               </div>
 
-              {/* Build Your Website card */}
-              <div className="bg-gradient-to-tr from-saas-yellow/10 to-saas-yellow/5 backdrop-blur-sm rounded-2xl p-6 border border-saas-yellow/20 shadow-[0_0_40px_rgba(255,215,0,0.15)]">
+              {/* Enhanced "Build Your Website" card with stronger glow */}
+              <div className="bg-gradient-to-tr from-saas-yellow/15 to-saas-yellow/5 backdrop-blur-sm rounded-2xl p-6 border border-saas-yellow/30 shadow-[0_0_50px_rgba(255,215,0,0.2)] hover:shadow-[0_0_60px_rgba(255,215,0,0.25)] transition-all">
                 <div className="text-center mb-6 flex flex-col items-center">
                   <div className="w-16 h-16 bg-saas-yellow/30 rounded-full mb-4 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -246,16 +253,14 @@ const HeroSection = () => {
 
                 <div className="grid grid-cols-3 gap-4">
                   <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30 mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/20 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/40 mb-2">
+                      <Zap className="h-6 w-6 text-saas-yellow" />
                     </div>
                     <span className="text-xs text-muted-foreground">Speed</span>
                   </div>
 
                   <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30 mb-2">
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/20 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/40 mb-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
@@ -264,7 +269,7 @@ const HeroSection = () => {
                   </div>
 
                   <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/10 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/30 mb-2">
+                    <div className="w-16 h-16 bg-black/40 rounded-lg flex items-center justify-center backdrop-blur-md border border-saas-yellow/20 transform transition-all duration-300 hover:scale-110 hover:border-saas-yellow/40 mb-2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-saas-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                       </svg>
@@ -273,9 +278,9 @@ const HeroSection = () => {
                   </div>
                 </div>
 
-                {/* Enhance glow effects */}
-                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-saas-yellow/10 rounded-full blur-3xl"></div>
-                <div className="absolute -top-12 -left-12 w-48 h-48 bg-saas-yellow/10 rounded-full blur-3xl"></div>
+                {/* Enhanced glow effects */}
+                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-saas-yellow/15 rounded-full blur-3xl"></div>
+                <div className="absolute -top-12 -left-12 w-48 h-48 bg-saas-yellow/15 rounded-full blur-3xl"></div>
               </div>
             </div>
           </div>
