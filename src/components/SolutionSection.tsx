@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Check, Package, Award, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import ParticlesBackground from "@/components/ui/ParticlesBackground";
+import ParticlesBackground from "@/components/ui/particle-background";
 
 const SolutionSection = () => {
   const packages = [
