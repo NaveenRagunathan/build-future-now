@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Check, Package, Award, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import ParticlesBackground from "@/components/ParticlesBackground";
+import ParticlesBackground from "@/components/ui/ParticlesBackground";
 
 const SolutionSection = () => {
   const packages = [
