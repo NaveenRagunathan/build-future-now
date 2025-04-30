@@ -3,9 +3,8 @@ import { componentTagger } from "lovable-tagger";
 import path from "path";
 import { defineConfig } from "vite";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/build-future-now/', // Add base URL for GitHub Pages
+  base: '/build-future-now/',
   server: {
     host: "::",
     port: 8080,
@@ -26,7 +25,13 @@ export default defineConfig(({ mode }) => ({
     assetsDir: 'assets',
     emptyOutDir: true,
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
       output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
         },
