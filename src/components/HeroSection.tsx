@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Clock, Star, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from 'react';
-import ParticlesBackground from "@/components/ui/ParticlesBackground"; // adjust path if needed
 
 const HeroSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
