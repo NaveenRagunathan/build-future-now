@@ -1,5 +1,4 @@
 
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -19,7 +18,7 @@ const FAQSection = () => {
     },
     {
       question: "Do you offer maintenance and support after launch?",
-      answer: "Yes, all our packages include support periods ranging from 1 to 12 months. After that, we offer flexible maintenance plans to ensure your website remains secure, up-to-date, and optimized for performance.",
+      answer: "Yes, all our packages include support periods ranging from 15 - 30 Days. After that, we offer flexible maintenance plans to ensure your website remains secure, up-to-date, and optimized for performance.",
     },
     {
       question: "Can you integrate my website with other tools we're using?",

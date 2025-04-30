@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 
 const ProblemSection = () => {
@@ -41,8 +40,8 @@ const ProblemSection = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
         </svg>
       ),
-      title: "Integration Complexity",
-      description: "Connecting your website with modern tools and APIs requires technical knowledge many lack.",
+      title: "Lost Credibility",
+      description: "Potential customers judge your startup's legitimacy within seconds of landing on your website.",
     },
     {
       id: 5,
@@ -70,9 +69,9 @@ const ProblemSection = () => {
     <section id="problems" className="py-20 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Startups Struggle with Web Development</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Your Startup Is Losing Customers Online</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Most founders face these common challenges when trying to build their online presence.
+          The Hidden Costs of a Poor Online Presence
           </p>
         </div>
 
