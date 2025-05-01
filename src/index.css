@@ -1,10 +1,28 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* SaaS theme color variables for light and dark mode */
+:root {
+  --saas-yellow: #ffd700; /* Original yellow */
+  --saas-primary: #C29100; /* Darker gold for light mode */
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+}
+
+.dark {
+  --saas-yellow: #ffd700; /* Keep the same in dark mode */
+  --saas-primary: #ffd700; /* Use yellow in dark mode too */
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #1f2937;
+  --muted-foreground: #9ca3af;
+}
 
 @layer base {
   :root {
@@ -46,6 +64,9 @@
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 85%;
     --sidebar-ring: 51 100% 50%;
+
+    --saas-yellow: #ffd700; /* Original yellow */
+    --saas-primary: #C29100; /* Darker gold for light mode */
   }
 
   .dark {
@@ -85,6 +106,9 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 51 100% 50%;
+
+    --saas-yellow: #ffd700; /* Keep the same in dark mode */
+    --saas-primary: #ffd700; /* Keep the same in dark mode */
   }
 }
 
@@ -103,9 +127,18 @@
   }
 }
 
-/* Custom classes */
+/* Gradient text that works in both themes */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-saas-yellow via-amber-300 to-saas-yellow;
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, var(--saas-yellow), #ffaa00);
+}
+
+.dark .gradient-text {
+  background-image: linear-gradient(to right, var(--saas-yellow), #ffaa00);
+}
+
+.light .gradient-text {
+  background-image: linear-gradient(to right, var(--saas-primary), #B07B00);
 }
 
 .fade-in {
@@ -123,22 +156,20 @@
   }
 }
 
+/* Hero pattern background */
 .hero-pattern {
-  background-image: 
-    radial-gradient(circle at 25px 25px, rgba(255, 215, 0, 0.15) 2%, transparent 0%), 
-    radial-gradient(circle at 75px 75px, rgba(255, 215, 0, 0.1) 2%, transparent 0%);
-  background-size: 100px 100px;
+  background-color: var(--background);
+  background-image: radial-gradient(
+    var(--muted) 1px,
+    transparent 1px
+  );
+  background-size: 50px 50px;
 }
 
-.clip-path-slant {
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-}
-
-/* Pain point carousel animation - enhanced for more visibility */
+/* Animation for pain points */
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(10px); }
-  10%, 90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-10px); }
+  0%, 100% { opacity: 0; transform: translateY(10px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
 }
 
 .pain-point-animate {

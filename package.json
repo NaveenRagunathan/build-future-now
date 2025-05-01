@@ -58,6 +58,7 @@
     "react-router-dom": "^6.30.0",
     "react-tsparticles": "^2.12.0",
     "recharts": "^2.12.7",
+    "sharp": "^0.34.1",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
