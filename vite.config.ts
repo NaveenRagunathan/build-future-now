@@ -1,9 +1,12 @@
-// vite.config.ts
+
+
+
+  // vite.config.ts (Debug Version)
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { defineConfig } from "vite";
 export default defineConfig({
-  base: '/build-future-now/',
+  base: '/',  // Simplified for testing
   plugins: [react()],
   resolve: {
     alias: {
