@@ -1,12 +1,12 @@
 
-import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from 'react';
 
 const ProcessSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   const steps = [
     {
       id: 1,
@@ -84,11 +84,11 @@ const ProcessSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
-      
+
       const sectionTop = sectionRef.current.offsetTop;
       const sectionHeight = sectionRef.current.offsetHeight;
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
+
       // Calculate which step should be active based on scroll position
       if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
         const scrollPercentage = (scrollPosition - sectionTop) / sectionHeight;
@@ -102,7 +102,7 @@ const ProcessSection = () => {
 
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initialize on mount
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [steps.length]);
 
@@ -128,8 +128,8 @@ const ProcessSection = () => {
   };
 
   return (
-    <section 
-      id="process" 
+    <section
+      id="process"
       ref={sectionRef}
       className="py-32 relative bg-gradient-to-b from-black via-black to-gray-900 overflow-hidden"
     >
@@ -137,7 +137,7 @@ const ProcessSection = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           {[...Array(20)].map((_, i) => (
-            <div 
+            <div
               key={i}
               className="absolute rounded-full bg-saas-yellow"
               style={{
@@ -156,7 +156,7 @@ const ProcessSection = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -178,7 +178,7 @@ const ProcessSection = () => {
         <div className="relative">
           {/* Vertical connection line with animated progress */}
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-800 transform -translate-x-1/2">
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 right-0 bg-saas-yellow rounded-full"
               style={{ height: `${(activeStep + 1) * 100 / steps.length}%` }}
               initial={{ height: 0 }}
@@ -188,7 +188,7 @@ const ProcessSection = () => {
           </div>
 
           {/* Steps */}
-          <motion.div 
+          <motion.div
             className="space-y-24 md:space-y-32"
             initial="hidden"
             whileInView="visible"
@@ -196,7 +196,7 @@ const ProcessSection = () => {
             variants={containerVariants}
           >
             {steps.map((step, index) => (
-              <motion.div 
+              <motion.div
                 key={step.id}
                 className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
                 variants={itemVariants}
@@ -207,14 +207,14 @@ const ProcessSection = () => {
                     whileHover={{ scale: 1.02 }}
                     className="w-full"
                   >
-                    <Card 
+                    <Card
                       className={`w-full md:max-w-md backdrop-blur-md border overflow-hidden transition-all duration-500 
-                        ${activeStep === index 
-                          ? 'bg-gradient-to-br from-black/80 to-gray-900/80 border-saas-yellow shadow-[0_0_30px_rgba(255,215,0,0.15)]' 
+                        ${activeStep === index
+                          ? 'bg-gradient-to-br from-black/80 to-gray-900/80 border-saas-yellow shadow-[0_0_30px_rgba(255,215,0,0.15)]'
                           : 'bg-black/40 border-saas-yellow/20'}`}
                     >
                       <CardContent className="p-8">
-                        <motion.div 
+                        <motion.div
                           className="text-saas-yellow mb-6 flex justify-center"
                           animate={activeStep === index ? {
                             scale: [1, 1.1, 1],
@@ -245,7 +245,7 @@ const ProcessSection = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           className="mt-24 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -253,9 +253,15 @@ const ProcessSection = () => {
           viewport={{ once: true }}
         >
           <p className="text-xl text-gray-300 mb-6">Ready to start your journey with us?</p>
-          <button className="bg-saas-yellow hover:bg-saas-yellow/90 text-black font-bold py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105">
+          <a
+            href="https://calendly.com/naveenrlinkedin/build-future-discovery-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-saas-yellow hover:bg-saas-yellow/90 text-black font-bold py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105 inline-block"
+            style={{ textDecoration: "none" }}
+          >
             Book a Discovery Call
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

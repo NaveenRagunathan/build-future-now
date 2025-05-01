@@ -43,27 +43,28 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-black">
+    <section id="faq" className="py-20 bg-neutral-950">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Frequently Asked Questions</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Get answers to common questions about our services, process, and what makes us different.
           </p>
         </div>
 
+
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
+              <AccordionItem
+                key={index}
                 value={`faq-${index}`}
-                className="bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg overflow-hidden"
+                className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg overflow-hidden"
               >
-                <AccordionTrigger className="px-6 py-4 text-left hover:text-saas-yellow hover:no-underline data-[state=open]:text-saas-yellow">
+                <AccordionTrigger className="px-6 py-4 text-left text-gray-200 hover:text-saas-yellow hover:no-underline data-[state=open]:text-saas-yellow">
                   <span className="font-medium text-lg">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-gray-400">
+                <AccordionContent className="px-6 pb-4 text-gray-300">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -84,6 +85,7 @@ const FAQSection = () => {
         </div>
       </div>
     </section>
+
   );
 };
 

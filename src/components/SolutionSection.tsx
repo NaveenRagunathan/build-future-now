@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,9 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Check, Package, Award, Trophy } from "lucide-react";
-import { cn } from "@/lib/utils";
 import ParticlesBackground from "@/components/ui/particle-background";
+import { cn } from "@/lib/utils";
+import { Award, Check, Package, Trophy } from "lucide-react";
 
 const SolutionSection = () => {
   const packages = [
@@ -138,18 +137,24 @@ const SolutionSection = () => {
                     ))}
                   </ul>
                 </CardContent>
-
                 <CardFooter className="px-6 py-6 bg-gradient-to-b from-transparent to-zinc-950/50">
                   <Button
+                    asChild
                     className={cn(
                       "w-full py-5 text-base font-semibold rounded-lg transition-colors",
                       pkg.isPopular
                         ? "bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 shadow-lg"
                         : "bg-zinc-900 text-white border border-zinc-700 hover:bg-zinc-800"
                     )}
-                    onClick={() => (window.location.href = "#contact")}
                   >
-                    Get Started
+                    <a
+                      href="https://calendly.com/naveenrlinkedin/build-future-discovery-call"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Get Started
+                    </a>
                   </Button>
                 </CardFooter>
 
@@ -172,10 +177,17 @@ const SolutionSection = () => {
             Not sure which package is right for you? Book a free consultation call to discuss your specific needs.
           </p>
           <Button
+            asChild
             className="bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 py-6 px-8 text-lg font-semibold rounded-xl shadow-md"
-            onClick={() => (window.location.href = "#contact")}
           >
-            Book Your Free Consultation
+            <a
+              href="https://calendly.com/naveenrlinkedin/build-future-discovery-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              Book Your Free Consultation
+            </a>
           </Button>
         </div>
       </div>

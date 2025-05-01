@@ -66,12 +66,16 @@ const ProblemSection = () => {
   ];
 
   return (
-    <section id="problems" className="py-20 bg-background">
+
+    <section
+      id="problems"
+      className="py-20 bg-gradient-to-b from-black via-black to-black transition-colors duration-700"
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Your Startup Is Losing Customers Online</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-          The Hidden Costs of a Poor Online Presence
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Why Your Startup Is Losing Customers Online</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            The Hidden Costs of a Poor Online Presence
           </p>
         </div>
 
