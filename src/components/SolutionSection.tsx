@@ -1,17 +1,5 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Check, Package, Award, Trophy } from "lucide-react";
-import { cn } from "@/lib/utils";
-import ParticlesBackground from "@/components/ui/particle-background";
 
 const SolutionSection = () => {
   const packages = [
@@ -21,7 +9,6 @@ const SolutionSection = () => {
       description: "Perfect for startups looking to establish their online presence quickly.",
       price: "$4,997",
       isPopular: false,
-      icon: Package,
       features: [
         "Responsive Website (Up to 5 Pages)",
         "Modern Design & User Experience",
@@ -37,7 +24,6 @@ const SolutionSection = () => {
       description: "Our most popular option for growing businesses seeking competitive advantage.",
       price: "$9,997",
       isPopular: true,
-      icon: Award,
       features: [
         "Everything in Basic Package",
         "Custom Website Design (Up to 10 Pages)",
@@ -55,7 +41,6 @@ const SolutionSection = () => {
       description: "Tailored solutions for businesses with specific needs and integrations.",
       price: "Custom Quote",
       isPopular: false,
-      icon: Trophy,
       features: [
         "Everything in Premium Package",
         "Unlimited Pages",
@@ -70,10 +55,8 @@ const SolutionSection = () => {
   ];
 
   return (
-    <section id="solutions" className="relative py-20 bg-black overflow-hidden">
-      <ParticlesBackground />
-
-      <div className="relative z-10 container mx-auto px-4 md:px-6">
+    <section id="solutions" className="py-20 bg-black">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-wide">
             Solutions That Deliver Results
@@ -83,86 +66,62 @@ const SolutionSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {packages.map((pkg) => (
-            <div key={pkg.id} className="group relative perspective-1000">
-              <Card
-                className={cn(
-                  "h-full relative transition-all duration-300 transform-gpu group-hover:translate-y-[-8px] bg-black rounded-xl overflow-hidden",
-                  pkg.isPopular
-                    ? "border-2 border-saas-yellow shadow-[0_0_20px_rgba(255,215,0,0.3)]"
-                    : "border-2 border-zinc-800"
-                )}
-              >
-                {pkg.isPopular && (
-                  <div className="absolute top-0 right-0">
-                    <Badge className="bg-saas-yellow text-saas-black font-semibold py-1 px-3 m-4 rounded-full text-xs">
+            <div
+              key={pkg.id}
+              className={
+                `relative bg-black rounded-[30px] border-2 overflow-hidden transition-transform duration-300 hover:scale-[1.03] ` +
+                (pkg.isPopular
+                  ? 'border-saas-yellow shadow-[0_0_30px_rgba(255,215,0,0.4)]'
+                  : 'border-zinc-700 shadow-md')
+              }
+            >
+              {/* Glow Overlay */}
+              <div className="absolute inset-0 rounded-[30px] ring-2 ring-saas-yellow/30 blur-lg opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+              <div className="relative z-10 p-8 flex flex-col h-full">
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-3xl font-extrabold text-white tracking-wide">{pkg.name}</h3>
+                  {pkg.isPopular && (
+                    <Badge className="bg-saas-yellow text-saas-black shadow-lg px-3 py-1 rounded-full text-xs font-bold">
                       Most Popular
                     </Badge>
-                  </div>
-                )}
-
-                <CardHeader
-                  className={cn(
-                    "relative z-10 px-6 pt-8 pb-4",
-                    pkg.isPopular ? "bg-gradient-to-br from-zinc-900 to-black" : ""
                   )}
+                </div>
+
+                <p className="text-gray-400 text-sm mb-8">{pkg.description}</p>
+                <p className="text-4xl font-bold text-white mb-6">{pkg.price}</p>
+
+                <ul className="space-y-4 text-sm flex-grow">
+                  {pkg.features.map((feature, index) => (
+                    <li key={index} className="flex items-start text-gray-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-saas-yellow mr-3 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  className={
+                    `mt-8 py-4 text-lg font-semibold rounded-xl w-full transition-colors ` +
+                    (pkg.isPopular
+                      ? 'bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 shadow-inner'
+                      : 'bg-zinc-900 text-saas-yellow border border-saas-yellow hover:bg-saas-yellow/10')
+                  }
+                  onClick={() => window.location.href = '#contact'}
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <pkg.icon
-                      className={cn(
-                        "h-8 w-8 mb-2",
-                        pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
-                      )}
-                    />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-white mb-1">{pkg.name}</CardTitle>
-                  <CardDescription className="text-gray-400 text-sm">{pkg.description}</CardDescription>
-                  <div className="mt-4">
-                    <p className="text-3xl font-bold text-white">{pkg.price}</p>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="px-6 py-4">
-                  <ul className="space-y-3">
-                    {pkg.features.map((feature, index) => (
-                      <li key={index} className="flex items-start text-gray-300 text-sm">
-                        <Check
-                          className={cn(
-                            "h-4 w-4 mr-3 mt-0.5 flex-shrink-0",
-                            pkg.isPopular ? "text-saas-yellow" : "text-zinc-400"
-                          )}
-                        />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-
-                <CardFooter className="px-6 py-6 bg-gradient-to-b from-transparent to-zinc-950/50">
-                  <Button
-                    className={cn(
-                      "w-full py-5 text-base font-semibold rounded-lg transition-colors",
-                      pkg.isPopular
-                        ? "bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 shadow-lg"
-                        : "bg-zinc-900 text-white border border-zinc-700 hover:bg-zinc-800"
-                    )}
-                    onClick={() => (window.location.href = "#contact")}
-                  >
-                    Get Started
-                  </Button>
-                </CardFooter>
-
-                {/* Glow effect on hover */}
-                <div
-                  className={cn(
-                    "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
-                    pkg.isPopular
-                      ? "bg-gradient-radial from-saas-yellow/10 via-transparent to-transparent"
-                      : "bg-gradient-radial from-zinc-700/10 via-transparent to-transparent"
-                  )}
-                ></div>
-              </Card>
+                  Get Started
+                </Button>
+              </div>
             </div>
           ))}
         </div>
@@ -173,7 +132,7 @@ const SolutionSection = () => {
           </p>
           <Button
             className="bg-saas-yellow text-saas-black hover:bg-saas-yellow/90 py-6 px-8 text-lg font-semibold rounded-xl shadow-md"
-            onClick={() => (window.location.href = "#contact")}
+            onClick={() => window.location.href = '#contact'}
           >
             Book Your Free Consultation
           </Button>
