@@ -1,21 +1,22 @@
+// vite.config.ts
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
+import { defineConfig } from 'vite';
 
-
-
-  // vite.config.ts (Debug Version)
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { defineConfig } from "vite";
 export default defineConfig({
-  base: '/',  // Simplified for testing
+  base: '/build-future-now/', // Important for GitHub Pages
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    // Remove the custom input configuration to use the default index.html in the root
-  }
+  },
+  server: {
+    open: true,
+    port: 5173, // Optional: Set dev server port
+  },
 });
